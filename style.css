@@ -1,0 +1,184 @@
+/* ===== 기본 리셋 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== 전체 배경, 글꼴 ===== */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5fa;
+  color: #000;
+}
+
+/* ===== 헤더 ===== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.search-box {
+  flex: 1;
+  text-align: center;
+}
+
+.search-box input {
+  width: 300px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+}
+
+/* ===== 로그인/회원가입 표시 ===== */
+.login-join {
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  font-size: 12px;
+  text-align: right;
+}
+
+.login-join a {
+  text-decoration: none;
+  color: #000;
+  margin: 0 3px;
+}
+
+.login-join a:hover {
+  text-decoration: underline;
+}
+
+.login-join .status {
+  display: block;
+  color: #0044cc;
+  font-weight: bold;
+}
+
+/* ===== 상단 탭 메뉴 ===== */
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #000;
+  background-color: #fff;
+}
+
+.nav-tabs div {
+  margin: 0 30px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.nav-tabs .active {
+  border-bottom: 2px solid #000;
+  font-weight: bold;
+}
+
+/* ===== 컨테이너 ===== */
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+/* ===== 중앙 안내 박스 (메인페이지 주기율표) ===== */
+.periodic-box {
+  border: 2px solid blue;
+  color: blue;
+  font-weight: bold;
+  text-align: center;
+  padding: 50px;
+  font-size: 18px;
+  background-color: #fff;
+}
+
+/* ===== 공통 박스 ===== */
+.box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* ===== 입력창 ===== */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* ===== 버튼 ===== */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* ===== 로그인/회원가입 페이지 전용 ===== */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.auth-form {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 350px;
+  text-align: center;
+}
+
+.auth-form h1 {
+  color: #3498db;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
