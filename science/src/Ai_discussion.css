@@ -1,12 +1,12 @@
-/* Ai_discussion.css */
-
 .ai-discussion-page {
     min-height: 100vh;
     background-color: #e5e5e5;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    -webkit-user-select: none !important;
+    -moz-user-select: -moz-none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
 }
 
-/* 헤더 스타일 (기존 CSS 재사용) */
 header {
     display: flex;
     align-items: center;
@@ -60,7 +60,6 @@ header {
     margin-bottom: 4px;
 }
 
-/* 네비게이션 탭 */
 .nav-tabs {
     display: flex;
     justify-content: center;
@@ -79,14 +78,12 @@ header {
     font-weight: bold;
 }
 
-/* 메인 컨텐츠 */
 .discussion-main {
     max-width: 1400px;
     margin: 0 auto;
     padding: 40px 20px;
 }
 
-/* 주제 입력 컨테이너 */
 .topic-input-container {
     background-color: transparent;
 }
@@ -99,7 +96,6 @@ header {
     color: #000;
 }
 
-/* 채팅 미리보기 영역 */
 .chat-preview-area {
     display: flex;
     justify-content: space-between;
@@ -133,7 +129,6 @@ header {
     color: #666;
 }
 
-/* 주제 입력 영역 */
 .topic-input-area {
     max-width: 1200px;
     margin: 0 auto;
@@ -209,7 +204,6 @@ header {
     cursor: not-allowed;
 }
 
-/* 채팅 활성화 상태 */
 .chat-active-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -253,7 +247,6 @@ header {
     background-color: #333;
 }
 
-/* 메시지 영역 */
 .messages-area {
     flex: 1;
     overflow-y: auto;
@@ -324,7 +317,6 @@ header {
     }
 }
 
-/* 채팅 입력 영역 */
 .chat-input-area {
     padding: 20px 24px;
     background-color: white;
@@ -351,7 +343,6 @@ header {
     cursor: not-allowed;
 }
 
-/* 반응형 */
 @media (max-width: 768px) {
     .chat-preview-area {
         flex-direction: column;
