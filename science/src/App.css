@@ -7,23 +7,14 @@ header {
   border-bottom: 1px solid #ddd;
   position: relative;
 }
-img {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-}
-.gle{
-  -webkit-user-select: none !important; 
+
+.gle {
+  -webkit-user-select: none !important;
   -moz-user-select: -moz-none !important;
   -ms-user-select: none !important;
   user-select: none !important;
 }
+
 .logo {
   font-size: 28px;
   font-weight: bold;
@@ -73,6 +64,7 @@ img {
   color: #000000;
   font-weight: bold;
 }
+
 .nav-tabs {
   display: flex;
   justify-content: center;
@@ -86,26 +78,28 @@ img {
   cursor: pointer;
 }
 
-.nav-tabs .active:hover{
+.nav-tabs .active:hover {
 
   text-decoration: underline;
   font-weight: bold;
 }
 
-.jugi{
+.jugi {
   width: 60%;
   height: 60%;
   margin-top: 10%;
   margin-left: 20%;
 }
+
 .periodic-grid {
-  margin-top:5%;
-  margin-left:5%;
-  margin-right:5%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
   display: grid;
   grid-template-columns: repeat(18, minmax(50px, 1fr));
   grid-template-rows: repeat(10, minmax(50px, 1fr));
-  gap: 0.675rem; /* Equivalent to gap-1.5 */
+  gap: 0.675rem;
+  /* Equivalent to gap-1.5 */
 }
 
 .element-box {
@@ -147,17 +141,61 @@ img {
   box-shadow: 0 0 0 4px #3b82f6, 0 0 0 6px #bfdbfe;
 }
 
-.bg-alkali { background-color: #fca5a5; } /* red-300 */
-.bg-alkali-earth { background-color: #fdba74; } /* orange-300 */
-.bg-lanthanide { background-color: #fde047; } /* yellow-300 */
-.bg-actinide { background-color: #d9f99d; } /* lime-300 */
-.bg-transition { background-color: #a7f3d0; } /* green-300 */
-.bg-post-transition { background-color: #99f6e4; } /* teal-300 */
-.bg-metalloid { background-color: #67e8f9; } /* cyan-300 */
-.bg-nonmetal { background-color: #93c5fd; } /* blue-300 */
-.bg-halogen { background-color: #a5b4fc; } /* indigo-300 */
-.bg-noble-gas { background-color: #d8b4fe; } /* purple-300 */
-.bg-unknown { background-color: #d1d5db; } /* gray-300 */
+.bg-alkali {
+  background-color: #fca5a5;
+}
+
+/* red-300 */
+.bg-alkali-earth {
+  background-color: #fdba74;
+}
+
+/* orange-300 */
+.bg-lanthanide {
+  background-color: #fde047;
+}
+
+/* yellow-300 */
+.bg-actinide {
+  background-color: #d9f99d;
+}
+
+/* lime-300 */
+.bg-transition {
+  background-color: #a7f3d0;
+}
+
+/* green-300 */
+.bg-post-transition {
+  background-color: #99f6e4;
+}
+
+/* teal-300 */
+.bg-metalloid {
+  background-color: #67e8f9;
+}
+
+/* cyan-300 */
+.bg-nonmetal {
+  background-color: #93c5fd;
+}
+
+/* blue-300 */
+.bg-halogen {
+  background-color: #a5b4fc;
+}
+
+/* indigo-300 */
+.bg-noble-gas {
+  background-color: #d8b4fe;
+}
+
+/* purple-300 */
+.bg-unknown {
+  background-color: #d1d5db;
+}
+
+/* gray-300 */
 /* 모달 스타일 */
 .modal-overlay {
   position: fixed;

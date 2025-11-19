@@ -162,6 +162,11 @@ const AtomVisualization = ({ atomicNumber }) => {
             shells.push(electronsInShell);
             remaining -= electronsInShell;
         }
+        if (shells.length > 1 && shells[shells.length - 1] > 8) {
+            const excess = shells[shells.length - 1] - 8;
+            shells[shells.length - 1] = 8;
+            shells.push(excess);
+        }
 
         return shells;
     };

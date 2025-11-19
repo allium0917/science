@@ -10,9 +10,22 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
 
     const callAI = async (userQuestion) => {
         try {
-            const API_KEY = 'AIzaSyBO5EVz8lRvWwfdm0x--IPVVYtpAcxm5JQ';
+            const API_KEY = 'AIzaSyC8I0oUhb6AjCZ73R0ze7EWcS8xJBxbCpU';
 
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+            const systemPrompt = `당신은 화학 원소와 주기율표 전문가입니다. 
+                현재 토론 주제: "${currentTopic}"
+
+                **중요 규칙:**
+                1. 반드시 현재 토론 주제("${currentTopic}")와 관련된 질문에만 답변하세요.
+                2. 주제와 무관한 질문(예: 날씨, 음식, 일상 대화 등)이 들어오면 "죄송하지만, 현재 토론 주제인 '${currentTopic}'와 관련 없는 질문입니다. 주제와 관련된 질문을 해주세요."라고 답변하세요.
+                3. 토론하는 느낌으로 답변하세요. 단순히 정보를 나열하지 말고, 의견을 제시하고 근거를 들어 설명하세요.
+                4. 상대방의 의견에 동의하거나 반박하는 식으로 대화를 이어가세요.
+                5. 때로는 "그 점에 대해서는 이렇게 생각합니다", "흥미로운 질문이네요", "그 부분에 대해 좀 더 깊이 생각해볼까요?" 같은 표현을 사용하세요.
+                6. 한국어로 답변하세요.
+
+                사용자 질문: ${userQuestion}`;
+
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,13 +33,21 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
                 body: JSON.stringify({
                     contents: [{
                         parts: [{
-                            text: `당신은 주기율표와 화학 원소 전문가입니다. "${currentTopic}" 주제에 대해 과학적이고 정확한 정보를 제공하며 토론해주세요.\n\n사용자 질문: ${userQuestion}\n\n답변은 반드시 한국어로 작성해주세요.`
+                            text: systemPrompt
                         }]
-                    }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.9,
+                        topK: 40,
+                        topP: 0.95,
+                        maxOutputTokens: 1024,
+                    }
                 })
             });
 
             if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                console.error('API 응답 오류:', errorData);
                 throw new Error(`API 오류: ${response.status}`);
             }
 
@@ -38,10 +59,9 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
             }
         } catch (error) {
             console.error('AI API 호출 오류:', error);
-            return '죄송합니다. 일시적인 오류가 발생했습니다. 다시 시도해주세요.';
+            return '죄송합니다. 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
         }
     };
-
     const handleStartDiscussion = () => {
         if (!topicInput.trim()) {
             return;
@@ -97,10 +117,6 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
         <div className="ai-discussion-page">
             <header>
                 <div className="logo">JuJu</div>
-                <div className="search-box">
-                    <input type="text" placeholder="검색" />
-                    <button className="search-btn">🔍</button>
-                </div>
                 <div className="login-join">
                     {user && (
                         <>
@@ -157,7 +173,7 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
                                 <button className="action-btn refresh-btn">↻</button>
                                 <button className="action-btn submit-btn" onClick={handleStartDiscussion}>✓</button>
                             </div>
-                        </div>
+                        </div>`  `
                     </div>
                 ) : (
                     <div className="chat-active-container">
