@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const API_URL = 'http://localhost:5000/api';
+
 const Ai_discussion = ({ user, onNavigate, onLogout }) => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
@@ -7,6 +9,7 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
     const [currentTopic, setCurrentTopic] = useState('');
     const [topicInput, setTopicInput] = useState('');
     const [discussionStarted, setDiscussionStarted] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
 
     const callAI = async (userQuestion) => {
         try {
@@ -62,6 +65,50 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
             return '죄송합니다. 일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
         }
     };
+
+    const saveDiscussion = async () => {
+        if (!user) {
+            alert('로그인이 필요합니다.');
+            return;
+        }
+
+        if (messages.length === 0) {
+            alert('저장할 토론 내용이 없습니다.');
+            return;
+        }
+
+        setIsSaving(true);
+
+        try {
+            const token = sessionStorage.getItem('token');
+
+            const response = await fetch(`${API_URL}/discussions`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    topic: currentTopic,
+                    messages: messages
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert('토론 내역이 저장되었습니다!');
+            } else {
+                alert(data.message || '저장 중 오류가 발생했습니다.');
+            }
+        } catch (error) {
+            console.error('토론 저장 오류:', error);
+            alert('서버 연결에 실패했습니다.');
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
     const handleStartDiscussion = () => {
         if (!topicInput.trim()) {
             return;
@@ -78,6 +125,13 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
     };
 
     const handleBackToTopicInput = () => {
+        if (messages.length > 0) {
+            const shouldSave = window.confirm('현재 토론 내용을 저장하시겠습니까?');
+            if (shouldSave && user) {
+                saveDiscussion();
+            }
+        }
+
         setDiscussionStarted(false);
         setCurrentTopic('');
         setMessages([]);
@@ -118,7 +172,7 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
             <header>
                 <div className="logo">JuJu</div>
                 <div className="login-join">
-                    {user && (
+                    {user ? (
                         <>
                             <span className="status">{user.name}님</span>
                             <button onClick={onLogout} style={{
@@ -129,6 +183,15 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
                             }}>
                                 로그아웃
                             </button>
+                        </>
+                    ) : (
+                        <>
+                            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('login'); }}>
+                                SIGN IN
+                            </a> |
+                            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('logup'); }}>
+                                SIGN UP
+                            </a>
                         </>
                     )}
                 </div>
@@ -173,15 +236,26 @@ const Ai_discussion = ({ user, onNavigate, onLogout }) => {
                                 <button className="action-btn refresh-btn">↻</button>
                                 <button className="action-btn submit-btn" onClick={handleStartDiscussion}>✓</button>
                             </div>
-                        </div>`  `
+                        </div>
                     </div>
                 ) : (
                     <div className="chat-active-container">
                         <div className="chat-header-bar">
                             <h2 className="current-topic">주제 : {currentTopic}</h2>
-                            <button onClick={handleBackToTopicInput} className="change-topic-btn">
-                                주제 변경
-                            </button>
+                            <div style={{ display: 'flex', gap: '10px' }}>
+                                {user && messages.length > 0 && (
+                                    <button
+                                        onClick={saveDiscussion}
+                                        disabled={isSaving}
+                                        className="save-discussion-btn"
+                                    >
+                                        {isSaving ? '저장 중...' : '💾 토론 저장'}
+                                    </button>
+                                )}
+                                <button onClick={handleBackToTopicInput} className="change-topic-btn">
+                                    주제 변경
+                                </button>
+                            </div>
                         </div>
 
                         <div className="messages-area">

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Main from "./components/Main.jsx";
 import Login from "./components/Login.jsx";
 import Ai_discussion from "./components/Ai_discussion.jsx";
+import Individual_page from "./components/individual_page.jsx";
 import "./App.css";
 import "./Login.css";
 import "./Ai_discussion.css";
+import "./individual_page.css";
 
 export default function App() {
     const [currentPage, setCurrentPage] = useState('main');
@@ -38,6 +40,12 @@ export default function App() {
     };
 
     const handleNavigate = (page) => {
+        // 개인 페이지는 로그인이 필요함
+        if (page === 'mypage' && !user) {
+            alert('로그인이 필요합니다.');
+            setCurrentPage('login');
+            return;
+        }
         setCurrentPage(page);
     };
 
@@ -51,6 +59,10 @@ export default function App() {
 
     if (currentPage === 'ai') {
         return <Ai_discussion user={user} onNavigate={handleNavigate} onLogout={handleLogout} />;
+    }
+
+    if (currentPage === 'mypage') {
+        return <Individual_page user={user} onNavigate={handleNavigate} onLogout={handleLogout} />;
     }
 
     return <Main user={user} onNavigate={handleNavigate} onLogout={handleLogout} />;
