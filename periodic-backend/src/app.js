@@ -1,18 +1,22 @@
-import express from 'express';
-import pool from './config/db.js';
+import express from "express";
+import cors from "cors";
+import authRouter from "./routes/auth.js";
+import pool from "./db.js";
 
 const app = express();
+const port = 3000;
+
+app.use(cors());
 app.use(express.json());
 
-app.get('/test', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({ time: result.rows[0].now });
-  } catch (err) {
-    res.status(500).send('DB Error');
-  }
+// 테스트용
+app.post("/test/signin", (req, res) => {
+    res.json({ message: "TEST SIGNIN OK" });
 });
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
+// 로그인 라우터
+app.use("/api", authRouter);  // fetch('/api/signin')과 매칭
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
