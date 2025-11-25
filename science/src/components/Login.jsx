@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const API_URL = 'http://localhost:5000/api';
+
 function SignIn({ onBack, onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,8 +25,16 @@ function SignIn({ onBack, onLogin }) {
       const data = await response.json();
 
       if (data.success) {
+        console.log('로그인 데이터:', data); // 전체 응답 확인
+
+        // user 객체에 name이 없으면 email에서 추출
+        const userData = {
+          ...data.user,
+          name: data.user.name || data.user.username || data.user.email?.split('@')[0] || '사용자'
+        };
+
         alert('로그인 성공!');
-        onLogin(data.user, data.token);
+        onLogin(userData, data.token);
       } else {
         setError(data.message);
       }
@@ -112,6 +121,16 @@ function SignUp({ onBack, onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.name.trim()) {
+      setError('이름을 입력해주세요!');
+      return;
+    }
+
+    if (!formData.email.trim()) {
+      setError('이메일을 입력해주세요!');
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setError('비밀번호가 일치하지 않습니다!');
       return;
@@ -141,8 +160,16 @@ function SignUp({ onBack, onLogin }) {
       const data = await response.json();
 
       if (data.success) {
+        console.log('회원가입 데이터:', data); // 전체 응답 확인
+
+        // user 객체에 name이 없으면 입력한 name 사용
+        const userData = {
+          ...data.user,
+          name: data.user.name || formData.name
+        };
+
         alert('회원가입 성공!');
-        onLogin(data.user, data.token);
+        onLogin(userData, data.token);
       } else {
         setError(data.message);
       }

@@ -76,10 +76,10 @@ header {
   margin: 0 30px;
   padding: 8px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .nav-tabs .active:hover {
-
   text-decoration: underline;
   font-weight: bold;
 }
@@ -99,7 +99,6 @@ header {
   grid-template-columns: repeat(18, minmax(50px, 1fr));
   grid-template-rows: repeat(10, minmax(50px, 1fr));
   gap: 0.675rem;
-  /* Equivalent to gap-1.5 */
 }
 
 .element-box {
@@ -114,6 +113,7 @@ header {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   font-size: 0.75rem;
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .element-box:hover {
@@ -145,57 +145,46 @@ header {
   background-color: #fca5a5;
 }
 
-/* red-300 */
 .bg-alkali-earth {
   background-color: #fdba74;
 }
 
-/* orange-300 */
 .bg-lanthanide {
   background-color: #fde047;
 }
 
-/* yellow-300 */
 .bg-actinide {
   background-color: #d9f99d;
 }
 
-/* lime-300 */
 .bg-transition {
   background-color: #a7f3d0;
 }
 
-/* green-300 */
 .bg-post-transition {
   background-color: #99f6e4;
 }
 
-/* teal-300 */
 .bg-metalloid {
   background-color: #67e8f9;
 }
 
-/* cyan-300 */
 .bg-nonmetal {
   background-color: #93c5fd;
 }
 
-/* blue-300 */
 .bg-halogen {
   background-color: #a5b4fc;
 }
 
-/* indigo-300 */
 .bg-noble-gas {
   background-color: #d8b4fe;
 }
 
-/* purple-300 */
 .bg-unknown {
   background-color: #d1d5db;
 }
 
-/* gray-300 */
 /* 모달 스타일 */
 .modal-overlay {
   position: fixed;
@@ -302,4 +291,312 @@ header {
   color: #667eea;
   font-weight: 700;
   font-size: 16px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+  .periodic-grid {
+    gap: 0.5rem;
+  }
+
+  .element-box-symbol {
+    font-size: 1.1rem;
+  }
+
+  .element-box-id {
+    font-size: 0.55rem;
+  }
+
+  .element-box-name {
+    font-size: 0.55rem;
+  }
+
+  .modal-symbol {
+    font-size: 64px;
+  }
+
+  .modal-name {
+    font-size: 22px;
+  }
+
+  .modal-info-label,
+  .modal-info-value {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .logo {
+    font-size: 24px;
+  }
+
+  .nav-tabs div {
+    margin: 0 20px;
+    font-size: 15px;
+  }
+
+  .periodic-grid {
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    gap: 0.4rem;
+    grid-template-columns: repeat(18, minmax(40px, 1fr));
+    grid-template-rows: repeat(10, minmax(40px, 1fr));
+  }
+
+  .element-box {
+    font-size: 0.65rem;
+  }
+
+  .element-box-symbol {
+    font-size: 1rem;
+  }
+
+  .element-box-id {
+    font-size: 0.5rem;
+  }
+
+  .element-box-name {
+    font-size: 0.5rem;
+  }
+
+  .modal-container {
+    max-width: 600px;
+  }
+
+  .modal-symbol {
+    font-size: 56px;
+  }
+
+  .modal-name {
+    font-size: 20px;
+  }
+
+  .modal-atomic-number {
+    font-size: 13px;
+  }
+
+  .modal-content {
+    padding: 24px 20px;
+  }
+
+  .modal-info-row {
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 12px 15px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .search-box input {
+    width: 180px;
+    font-size: 13px;
+  }
+
+  .login-join {
+    font-size: 11px;
+  }
+
+  .nav-tabs div {
+    margin: 0 15px;
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  .jugi {
+    width: 70%;
+    margin-left: 15%;
+  }
+
+  .periodic-grid {
+    margin: 2% 2%;
+    gap: 0.3rem;
+    grid-template-columns: repeat(18, minmax(30px, 1fr));
+    grid-template-rows: repeat(10, minmax(30px, 1fr));
+  }
+
+  .element-box {
+    font-size: 0.55rem;
+    padding: 0.15rem;
+  }
+
+  .element-box-symbol {
+    font-size: 0.85rem;
+  }
+
+  .element-box-id {
+    font-size: 0.45rem;
+    top: 0.15rem;
+    left: 0.15rem;
+  }
+
+  .element-box-name {
+    font-size: 0.45rem;
+  }
+
+  .modal-container {
+    max-width: 500px;
+  }
+
+  .modal-header {
+    padding: 20px;
+  }
+
+  .modal-symbol {
+    font-size: 48px;
+  }
+
+  .modal-name {
+    font-size: 18px;
+  }
+
+  .modal-atomic-number {
+    font-size: 12px;
+  }
+
+  .modal-close-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
+
+  .modal-content {
+    padding: 20px 16px;
+  }
+
+  .modal-info-row {
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+
+  .modal-info-label,
+  .modal-info-value {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 18px;
+  }
+
+  .search-box {
+    display: none;
+  }
+
+  .login-join {
+    font-size: 10px;
+  }
+
+  .login-join .status {
+    left: 0;
+  }
+
+  .nav-tabs div {
+    margin: 0 10px;
+    padding: 5px;
+    font-size: 13px;
+  }
+
+  .jugi {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  .periodic-grid {
+    margin: 2% 1%;
+    gap: 0.2rem;
+    grid-template-columns: repeat(18, minmax(22px, 1fr));
+    grid-template-rows: repeat(10, minmax(22px, 1fr));
+  }
+
+  .element-box {
+    font-size: 0.45rem;
+    padding: 0.1rem;
+    border-width: 0.5px;
+  }
+
+  .element-box-symbol {
+    font-size: 0.7rem;
+  }
+
+  .element-box-id {
+    font-size: 0.35rem;
+    top: 0.1rem;
+    left: 0.1rem;
+  }
+
+  .element-box-name {
+    font-size: 0.35rem;
+    display: none;
+    /* 매우 작은 화면에서는 원소 이름 숨김 */
+  }
+
+  .modal-container {
+    max-width: 95%;
+    border-width: 2px;
+  }
+
+  .modal-header {
+    padding: 16px;
+  }
+
+  .modal-symbol {
+    font-size: 40px;
+  }
+
+  .modal-name {
+    font-size: 16px;
+  }
+
+  .modal-atomic-number {
+    font-size: 11px;
+  }
+
+  .modal-close-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 16px;
+    top: 12px;
+    right: 12px;
+  }
+
+  .modal-content {
+    padding: 16px 12px;
+  }
+
+  .modal-info-row {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .modal-info-label,
+  .modal-info-value {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  .periodic-grid {
+    margin: 2% 3%;
+  }
+}
+
+@media (max-width: 640px) {
+  .element-box-symbol {
+    font-size: 0.75rem;
+  }
+
+  .element-box-id {
+    font-size: 0.4rem;
+  }
 }

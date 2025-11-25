@@ -1,3 +1,41 @@
+.example-card {
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.example-card:hover {
+    border-color: #999;
+    background: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.question-card {
+    border-color: #c9c9c9;
+}
+
+.question-card:hover {
+    border-color: #777;
+    background: #fafafa;
+}
+
+.example-topic {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.example-question {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
 .ai-discussion-page {
     min-height: 100vh;
     background-color: #e5e5e5;
@@ -77,6 +115,7 @@ header {
     margin: 0 30px;
     padding: 8px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 .nav-tabs .active:hover {
@@ -135,15 +174,82 @@ header {
     color: #666;
 }
 
+/* 예시 주제 섹션 */
+.examples-section {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+}
+
+.examples-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.example-card {
+    background: white;
+    border: 2px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.example-card:hover {
+    border-color: #667eea;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.example-topic {
+    font-size: 16px;
+    font-weight: 600;
+    color: #667eea;
+    margin-bottom: 8px;
+}
+
+.example-question {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* 주제와 질문 입력 영역 */
 .topic-input-area {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    padding-left: 12px;
+}
+
+.input-wrapper {
     position: relative;
 }
 
-.topic-input-field {
+.topic-input-field,
+.question-input-field {
     width: 100%;
-    padding: 18px 140px 18px 24px;
+    padding: 18px 24px;
     border: 2px solid #999;
     border-radius: 50px;
     font-size: 16px;
@@ -152,7 +258,12 @@ header {
     box-sizing: border-box;
 }
 
-.topic-input-field:focus {
+.question-input-field {
+    padding-right: 140px;
+}
+
+.topic-input-field:focus,
+.question-input-field:focus {
     border-color: #666;
 }
 
@@ -238,6 +349,17 @@ header {
     margin: 0;
 }
 
+.topic-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
 .save-discussion-btn {
     padding: 8px 20px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -316,6 +438,7 @@ header {
     word-wrap: break-word;
     white-space: pre-wrap;
     line-height: 1.5;
+    font-size: 15px;
 }
 
 .user-msg .message-content {
@@ -372,10 +495,82 @@ header {
     cursor: not-allowed;
 }
 
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .logo {
+        font-size: 24px;
+    }
+
+    .nav-tabs div {
+        margin: 0 20px;
+        font-size: 15px;
+    }
+
+    .topic-heading {
+        font-size: 28px;
+        margin-bottom: 50px;
+    }
+
+    .preview-message {
+        padding: 35px;
+        font-size: 15px;
+    }
+
+    .input-label {
+        font-size: 15px;
+    }
+
+    .topic-input-field,
+    .question-input-field {
+        font-size: 15px;
+        padding: 16px 22px;
+    }
+
+    .question-input-field {
+        padding-right: 130px;
+    }
+
+    .current-topic {
+        font-size: 18px;
+    }
+
+    .topic-subtitle {
+        font-size: 13px;
+    }
+}
+
 @media (max-width: 768px) {
+    header {
+        padding: 12px 15px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .search-box input {
+        width: 180px;
+        font-size: 13px;
+    }
+
+    .login-join {
+        font-size: 11px;
+    }
+
+    .nav-tabs div {
+        margin: 0 15px;
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .discussion-main {
+        padding: 30px 15px;
+    }
+
     .chat-preview-area {
         flex-direction: column;
         gap: 20px;
+        margin-bottom: 40px;
     }
 
     .topic-heading {
@@ -385,24 +580,57 @@ header {
 
     .preview-message {
         min-height: 120px;
-        padding: 30px;
+        padding: 30px 20px;
         font-size: 14px;
+        border-radius: 20px;
+    }
+
+    .examples-section {
+        margin-bottom: 40px;
+    }
+
+    .examples-title {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    .examples-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .example-card {
+        padding: 16px;
+    }
+
+    .example-topic {
+        font-size: 15px;
+    }
+
+    .example-question {
+        font-size: 13px;
+    }
+
+    .input-label {
+        font-size: 14px;
+        padding-left: 8px;
     }
 
     .topic-input-field,
-    .chat-input-field {
-        padding-right: 120px;
+    .question-input-field {
+        padding: 14px 18px;
         font-size: 14px;
+        border-radius: 40px;
+    }
+
+    .question-input-field {
+        padding-right: 120px;
     }
 
     .action-btn {
         width: 32px;
         height: 32px;
         font-size: 16px;
-    }
-
-    .message-content {
-        max-width: 85%;
     }
 
     .chat-active-container {
@@ -413,11 +641,128 @@ header {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+        padding: 16px 20px;
+    }
+
+    .current-topic {
+        font-size: 16px;
+    }
+
+    .topic-subtitle {
+        font-size: 12px;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
     }
 
     .save-discussion-btn,
     .change-topic-btn {
         padding: 6px 16px;
         font-size: 13px;
+    }
+
+    .messages-area {
+        padding: 20px 16px;
+    }
+
+    .message-content {
+        max-width: 85%;
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+
+    .chat-input-area {
+        padding: 16px 20px;
+    }
+
+    .chat-input-field {
+        padding: 12px 120px 12px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 18px;
+    }
+
+    .search-box {
+        display: none;
+    }
+
+    .nav-tabs div {
+        margin: 0 10px;
+        font-size: 13px;
+    }
+
+    .topic-heading {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .preview-message {
+        padding: 25px 15px;
+        font-size: 13px;
+        min-height: 100px;
+    }
+
+    .examples-section {
+        margin-bottom: 30px;
+    }
+
+    .examples-title {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .example-card {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .example-topic {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .example-question {
+        font-size: 12px;
+    }
+
+    .input-label {
+        font-size: 13px;
+    }
+
+    .topic-input-field,
+    .question-input-field {
+        font-size: 13px;
+        padding: 12px 16px;
+    }
+
+    .question-input-field {
+        padding-right: 110px;
+    }
+
+    .action-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    .current-topic {
+        font-size: 15px;
+    }
+
+    .message-content {
+        font-size: 13px;
+        padding: 12px 14px;
+    }
+
+    .save-discussion-btn,
+    .change-topic-btn {
+        font-size: 12px;
+        padding: 6px 14px;
     }
 }
